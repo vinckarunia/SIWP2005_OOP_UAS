@@ -9,7 +9,16 @@ class Course(db.Document):
     sks = db.IntField(required=False)
     description = db.StringField(required=False)
     
-class Bulletin(db.Document):
-    name = db.StringField(required=True)
+class News(db.Document):
+    user = db.ReferenceField(User)
+    title = db.StringField(required=True)
     content =  db.StringField(required=False)
     # course = db.ReferenceField(Course)
+
+class Exam(db.Document):
+    user = db.ReferenceField(User)
+    kode_mk = db.StringField(required=True, unique=True)
+    course = db.StringField(required=True)
+    date = db.DateTimeField(required=True)
+    room = db.StringField(required=False)
+   
